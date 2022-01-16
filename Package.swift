@@ -5,14 +5,14 @@ import PackageDescription
 let name: String = "CoreUtils"
 
 let package = Package(
-    name: name,
+    name: "CoreUtils",
     platforms: [
         .iOS("15")
     ],
     products: [
-        .library(name: name, targets: [name])
+        .library(name: "CoreUtils", targets: ["CoreUtils"])
     ],
     targets: [
-        .target(name: name, path: "Sources")
+        .target(name: "CoreUtils", path: "Sources")
     ]
 )
