@@ -13,6 +13,7 @@ public func undefined<T>(
         .last
         .orEmpty
     logger.error("Undefined value found in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
+
     fatalError()
 }
 

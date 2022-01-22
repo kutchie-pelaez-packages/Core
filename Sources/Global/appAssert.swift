@@ -16,6 +16,7 @@ public func appAssert(
         .last
         .orEmpty
     logger.error("Assert in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
+
     assertionFailure()
 }
 

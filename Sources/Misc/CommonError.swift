@@ -1,6 +1,6 @@
 public enum CommonError: Error {
-    case decodingIssue
-    case encodingIssue
+    case decodingFailure
+    case encodingFailure
     case noDelegateProvided
     case operationCancelled
 }

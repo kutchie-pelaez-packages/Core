@@ -13,5 +13,6 @@ public func appFatalError(
         .last
         .orEmpty
     logger.error("Fatal error in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
+    
     fatalError()
 }
