@@ -2,11 +2,11 @@ public protocol Startable {
     func start()
 }
 
-public protocol StartableProvider {
+public protocol StartableProvider: Startable {
     var startable: Startable { get }
 }
 
-extension StartableProvider {
+extension Startable where Self: StartableProvider {
     public func start() {
         startable.start()
     }
