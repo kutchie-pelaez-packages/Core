@@ -1,8 +1,12 @@
 import Combine
 
 public class ValueSubject<Value>: Publisher {
+    internal init(_ currentValueSubject: CurrentValueSubject<Output, Failure>) {
+        self.currentValueSubject = currentValueSubject
+    }
+
     internal init(_ value: Output) {
-        currentValueSubject = CurrentValueSubject(value)
+        self.currentValueSubject = CurrentValueSubject<Output, Failure>(value)
     }
 
     internal let currentValueSubject: CurrentValueSubject<Output, Failure>
