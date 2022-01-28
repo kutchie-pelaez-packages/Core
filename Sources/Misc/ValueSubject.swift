@@ -1,13 +1,13 @@
 import Combine
 
 public class ValueSubject<Value>: Publisher {
-    internal init(_ value: Value) {
+    internal init(_ value: Output) {
         currentValueSubject = CurrentValueSubject(value)
     }
 
-    internal let currentValueSubject: CurrentValueSubject<Value, Failure>
+    internal let currentValueSubject: CurrentValueSubject<Output, Failure>
 
-    public var value: Value {
+    public var value: Output {
         currentValueSubject.value
     }
 
@@ -17,7 +17,7 @@ public class ValueSubject<Value>: Publisher {
 
     public typealias Failure = Never
 
-    public func receive<S>(subscriber: S) where S : Subscriber, S.Failure == Never, S.Input == Value {
+    public func receive<S>(subscriber: S) where S : Subscriber, S.Failure == Failure, S.Input == Output {
         currentValueSubject.receive(subscriber: subscriber)
     }
 }
