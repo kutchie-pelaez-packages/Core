@@ -2,17 +2,17 @@
 
 import PackageDescription
 
-let name: String = "CoreUtils"
+let name: String = "Core"
 
 let package = Package(
-    name: "CoreUtils",
+    name: "Core",
     platforms: [
         .iOS("15")
     ],
     products: [
-        .library(name: "CoreUtils", targets: ["CoreUtils"])
+        .library(name: "Core", targets: ["Core"])
     ],
     targets: [
-        .target(name: "CoreUtils", path: "Sources")
+        .target(name: "Core", path: "Sources")
     ]
 )
