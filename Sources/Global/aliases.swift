@@ -16,5 +16,8 @@ public typealias BoolResolver = () -> Bool
 public typealias ValuePublisher<Value> = AnyPublisher<Value, Never>
 public typealias VoidPublisher = AnyPublisher<Void, Never>
 
+public typealias ValuePassthroughSubject<Value> = PassthroughSubject<Value, Never>
+public typealias VoidPassthroughSubject = PassthroughSubject<Void, Never>
+
 public typealias ValueFuture<Value> = Future<Value, Never>
 public typealias VoidFuture = Future<Void, Never>
