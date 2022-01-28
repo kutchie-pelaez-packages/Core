@@ -2,8 +2,6 @@
 
 import PackageDescription
 
-let name: String = "Core"
-
 let package = Package(
     name: "Core",
     platforms: [
@@ -13,6 +11,9 @@ let package = Package(
         .library(name: "Core", targets: ["Core"])
     ],
     targets: [
-        .target(name: "Core", path: "Sources")
+        .target(
+            name: "Core",
+            path: "Sources"
+        )
     ]
 )
