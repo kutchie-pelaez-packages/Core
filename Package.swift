@@ -8,7 +8,12 @@ let package = Package(
         .iOS("15")
     ],
     products: [
-        .library(name: "Core", targets: ["Core"])
+        .library(
+            name: "Core",
+            targets: [
+                "Core"
+            ]
+        )
     ],
     targets: [
         .target(
