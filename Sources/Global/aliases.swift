@@ -5,7 +5,6 @@ public typealias IntBlock = (Int) -> Void
 public typealias StringBlock = (String) -> Void
 public typealias DoubleBlock = (Double) -> Void
 public typealias BoolBlock = (Bool) -> Void
-public typealias AsyncBlock = () async -> Void
 
 public typealias Resolver<T> = () -> T
 public typealias IntResolver = () -> Int
