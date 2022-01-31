@@ -1,11 +1,19 @@
 import Foundation
 
 extension Date {
+    public func componentValue(_ component: Calendar.Component) -> Int {
+        Calendar.current.component(
+            component,
+            from: self
+        )
+    }
+
     public func distance(
         to date: Date,
-        component: Calendar.Component,
-        calendar: Calendar = .current
+        component: Calendar.Component
     ) -> Int {
+        let calendar = Calendar.current
+
         let toComponent = calendar.component(
             component,
             from: date
