@@ -1,6 +1,6 @@
 import os
 
-private let logger = Logger("appFatalError")
+//private let logger = Logger("appFatalError")
 
 public func appFatalError(
     _ message: String = "",
@@ -12,7 +12,7 @@ public func appFatalError(
         .split(separator: "/")
         .last
         .orEmpty
-    logger.error("Fatal error in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
+//    logger.error("Fatal error in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
     
     fatalError()
 }

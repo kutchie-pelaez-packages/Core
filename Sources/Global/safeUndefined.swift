@@ -1,6 +1,6 @@
 import os
 
-private let logger = Logger("safeUndefined")
+//private let logger = Logger("safeUndefined")
 
 public func safeUndefined<T>(
     _ fallback: T,
@@ -13,7 +13,7 @@ public func safeUndefined<T>(
         .split(separator: "/")
         .last
         .orEmpty
-    logger.error("Undefined value found in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
+//    logger.error("Undefined value found in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
     assertionFailure()
 
     return fallback

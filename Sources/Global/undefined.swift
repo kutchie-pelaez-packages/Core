@@ -1,6 +1,6 @@
 import os
 
-private let logger = Logger("undefined")
+//private let logger = Logger("undefined")
 
 public func undefined<T>(
     _ message: String = "",
@@ -12,7 +12,7 @@ public func undefined<T>(
         .split(separator: "/")
         .last
         .orEmpty
-    logger.error("Undefined value found in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
+//    logger.error("Undefined value found in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
 
     fatalError()
 }

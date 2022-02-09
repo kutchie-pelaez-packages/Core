@@ -1,6 +1,6 @@
 import os
 
-private let logger = Logger("appAssert")
+//private let logger = Logger("appAssert")
 
 public func appAssert(
     _ condition: Bool,
@@ -15,7 +15,7 @@ public func appAssert(
         .split(separator: "/")
         .last
         .orEmpty
-    logger.error("Assert in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
+//    logger.error("Assert in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
 
     assertionFailure()
 }
