@@ -39,7 +39,7 @@ public struct Clamped<T: Comparable> {
         } else if let upperBound = upperBound {
             return min(upperBound, value)
         } else {
-            appFatalError()
+            crash()
         }
     }
 

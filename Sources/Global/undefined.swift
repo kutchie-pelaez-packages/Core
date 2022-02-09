@@ -1,20 +1,11 @@
-import os
-
-//private let logger = Logger("undefined")
-
 public func undefined<T>(
     _ message: String = "",
     _ file: String = #file,
     _ function: String = #function,
     _ line: Int = #line
 ) -> T {
-    let filename = file
-        .split(separator: "/")
-        .last
-        .orEmpty
-//    logger.error("Undefined value found in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
-
-    fatalError()
+    let filename = file.split(separator: "/").last.orEmpty
+    fatalError("Undefined value found in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
 }
 
 public func undefinedIf<T>(

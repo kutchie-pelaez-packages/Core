@@ -1,8 +1,4 @@
-public struct WeakArray<T>:
-    Collection,
-    ExpressibleByArrayLiteral
-{
-
+public struct WeakArray<T>: Collection, ExpressibleByArrayLiteral {
     public init() {
         self.buffer = []
     }

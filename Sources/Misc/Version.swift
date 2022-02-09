@@ -1,9 +1,4 @@
-public struct Version:
-    CustomStringConvertible,
-    Comparable,
-    Codable
-{
-
+public struct Version: CustomStringConvertible, Comparable, Codable {
     public init(
         major: Int,
         minor: Int,
