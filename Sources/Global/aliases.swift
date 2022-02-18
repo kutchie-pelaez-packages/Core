@@ -12,6 +12,8 @@ public typealias StringResolver = () -> String
 public typealias DoubleResolver = () -> Double
 public typealias BoolResolver = () -> Bool
 
+public typealias Mapper<From, To> = (From) -> To
+
 public typealias ValuePublisher<Value> = AnyPublisher<Value, Never>
 public typealias VoidPublisher = AnyPublisher<Void, Never>
 
