@@ -2,26 +2,26 @@
 public struct VersionUserDefault {
     public init(
         _ key: String,
-        _ defaultValue: Version
+        _ default: Version
     ) {
         self._versionString = UserDefault(
             key,
             default: nil
         )
-        self.defaultValue = defaultValue
+        self.default = `default`
     }
 
     @UserDefault
     private var versionString: String?
-    private let defaultValue: Version
+    private let `default`: Version
 
     public var wrappedValue: Version {
         get {
             guard let versionString = versionString else {
-                return defaultValue
+                return `default`
             }
 
-            return Version(versionString) ?? defaultValue
+            return Version(versionString) ?? `default`
         } set {
             versionString = newValue.description
         }
