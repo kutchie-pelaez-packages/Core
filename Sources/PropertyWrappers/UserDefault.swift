@@ -15,15 +15,15 @@ public struct UserDefault<T> {
         default: T
     ) {
         self.key = key
-        self.defaultValue = `default`
+        self.default = `default`
     }
 
     private let key: String
-    private let defaultValue: T
+    private let `default`: T
 
     public var wrappedValue: T {
         get {
-            (UserDefaults.standard.value(forKey: key) as? T) ?? defaultValue
+            (UserDefaults.standard.value(forKey: key) as? T) ?? `default`
         } set {
             if isNil(newValue) {
                 UserDefaults.standard.removeObject(forKey: key)
