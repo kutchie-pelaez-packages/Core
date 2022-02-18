@@ -9,6 +9,10 @@ extension Reassignable {
     }
 }
 
-extension Bool: Reassignable { }
-
 extension Int: Reassignable { }
+
+extension String: Reassignable { }
+
+extension Double: Reassignable { }
+
+extension Bool: Reassignable { }
