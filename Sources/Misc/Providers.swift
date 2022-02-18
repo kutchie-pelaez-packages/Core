@@ -1,3 +1,5 @@
+import Foundation
+
 public protocol IntProvider {
     var providee: Int { get }
 }
@@ -12,4 +14,8 @@ public protocol DoubleProvider {
 
 public protocol BoolProvider {
     var providee: Bool { get }
+}
+
+public protocol DataProvider {
+    var providee: Data { get }
 }

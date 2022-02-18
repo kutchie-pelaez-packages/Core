@@ -1,16 +1,19 @@
 import Combine
+import Foundation
 
 public typealias Block = () -> Void
 public typealias IntBlock = (Int) -> Void
 public typealias StringBlock = (String) -> Void
 public typealias DoubleBlock = (Double) -> Void
 public typealias BoolBlock = (Bool) -> Void
+public typealias DataBlock = (Data) -> Void
 
 public typealias Resolver<T> = () -> T
 public typealias IntResolver = () -> Int
 public typealias StringResolver = () -> String
 public typealias DoubleResolver = () -> Double
 public typealias BoolResolver = () -> Bool
+public typealias DataResolver = () -> Data
 
 public typealias Mapper<From, To> = (From) -> To
 
