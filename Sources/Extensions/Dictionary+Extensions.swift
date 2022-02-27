@@ -50,4 +50,8 @@ extension Dictionary {
             from: utf8Data
         )
     }
+
+    public func byExcludingNilValues() -> [Key: Any] {
+        compactMapValues { $0 is NSNull ? nil : $0 }
+    }
 }
