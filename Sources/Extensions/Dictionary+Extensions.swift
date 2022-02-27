@@ -51,7 +51,7 @@ extension Dictionary {
         )
     }
 
-    public func byExcludingNilValues() -> [Key: Any] {
+    public var excludingNilValues: [Key: Any] {
         compactMapValues { $0 is NSNull ? nil : $0 }
     }
 }
