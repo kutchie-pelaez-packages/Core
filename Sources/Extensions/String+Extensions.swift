@@ -15,7 +15,7 @@ extension String {
 
     public var camelCaseChunks: [String] {
         unicodeScalars.reduce("") {
-            let separator = CharacterSet.uppercaseLetters.contains($1) ? " " : ""
+            let separator = CharacterSet.uppercaseLetters.union(.decimalDigits).contains($1) ? " " : ""
 
             return $0 + separator + String($1)
         }
