@@ -14,4 +14,13 @@ extension FileManager {
             "Failed to get documents directory"
         )
     }
+
+    public func cleanup(_ url: URL) throws {
+        for item in try contentsOfDirectory(
+            at: url,
+            includingPropertiesForKeys: nil
+        ) {
+            try removeItem(at: item)
+        }
+    }
 }
