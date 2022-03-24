@@ -4,7 +4,8 @@ extension MutableCollection {
             guard let index = index else { return nil }
 
             return indices.contains(index) ? self[index] : nil
-        } set {
+        }
+        set {
             guard
                 let index = index,
                 indices.contains(index),

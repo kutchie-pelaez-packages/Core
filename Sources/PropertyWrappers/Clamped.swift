@@ -47,10 +47,7 @@ public struct Clamped<T: Comparable> {
     private let upperBound: T?
 
     public var wrappedValue: T {
-        get {
-            clampedValue
-        } set {
-            value = newValue
-        }
+        get { clampedValue }
+        set { value = newValue }
     }
 }

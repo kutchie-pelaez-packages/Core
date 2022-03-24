@@ -22,8 +22,7 @@ public struct VersionUserDefault {
             }
 
             return Version(versionString) ?? `default`
-        } set {
-            versionString = newValue.description
         }
+        set { versionString = newValue.description }
     }
 }

@@ -15,8 +15,7 @@ public struct NullableVersionUserDefault {
             guard let versionString = versionString else { return nil }
 
             return Version(versionString)
-        } set {
-            versionString = newValue?.description
         }
+        set { versionString = newValue?.description }
     }
 }

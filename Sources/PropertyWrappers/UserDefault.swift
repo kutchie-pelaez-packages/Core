@@ -22,9 +22,8 @@ public struct UserDefault<T> {
     private let `default`: T
 
     public var wrappedValue: T {
-        get {
-            (UserDefaults.standard.value(forKey: key) as? T) ?? `default`
-        } set {
+        get { (UserDefaults.standard.value(forKey: key) as? T) ?? `default` }
+        set {
             if isNil(newValue) {
                 UserDefaults.standard.removeObject(forKey: key)
             } else {

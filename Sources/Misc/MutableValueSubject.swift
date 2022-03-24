@@ -10,11 +10,8 @@ public class MutableValueSubject<Value>: ValueSubject<Value> {
     }
 
     public override var value: Value {
-        get {
-            super.value
-        } set {
-            super.currentValueSubject.value = newValue
-        }
+        get { super.value }
+        set { super.currentValueSubject.value = newValue }
     }
 }
 
@@ -38,9 +35,8 @@ public final class UniqueMutableValueSubject<Value>: MutableValueSubject<Value> 
     private let removeDuplicates: Bool
 
     public override var value: Value {
-        get {
-            super.value
-        } set {
+        get { super.value }
+        set {
             guard
                 newValue != value ||
                 !removeDuplicates

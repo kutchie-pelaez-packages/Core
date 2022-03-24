@@ -10,9 +10,8 @@ public struct Weak<T> {
     private var resolver: Resolver<T?>
 
     public var wrappedValue: T? {
-        get {
-            resolver()
-        } set {
+        get { resolver() }
+        set {
             let object = newValue as AnyObject
             resolver = { [weak object] in object as? T }
         }
