@@ -28,20 +28,7 @@ public struct Clamped<T: Comparable> {
     }
 
     private var value: T
-    private var clampedValue: T {
-        if
-            let lowerBound = lowerBound,
-            let upperBound = upperBound
-        {
-            return min(max(lowerBound, value), upperBound)
-        } else if let lowerBound = lowerBound {
-            return max(lowerBound, value)
-        } else if let upperBound = upperBound {
-            return min(upperBound, value)
-        } else {
-            crash()
-        }
-    }
+    private var clampedValue: T { value.clamped(from: lowerBound, to: upperBound) }
 
     private let lowerBound: T?
     private let upperBound: T?

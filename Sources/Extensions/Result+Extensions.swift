@@ -1,6 +1,10 @@
 extension Result {
     public var success: Success? {
-        try? get()
+        if case let .success(success) = self {
+            return success
+        }
+
+        return nil
     }
 
     public var failure: Failure? {

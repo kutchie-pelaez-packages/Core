@@ -4,10 +4,7 @@ public struct VersionUserDefault {
         _ key: String,
         _ default: Version
     ) {
-        self._versionString = UserDefault(
-            key,
-            default: nil
-        )
+        self._versionString = UserDefault(key, default: nil)
         self.default = `default`
     }
 

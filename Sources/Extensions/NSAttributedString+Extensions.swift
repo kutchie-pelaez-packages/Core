@@ -6,37 +6,20 @@ extension NSAttributedString {
     }
 
     public func attribute(for key: NSAttributedString.Key) -> Any? {
-        attribute(
-            key,
-            at: 0,
-            effectiveRange: nil
-        )
+        attribute(key, at: 0, effectiveRange: nil)
     }
 
-    public func appending(
-        _ attribute: Any,
-        for key: NSAttributedString.Key
-    ) -> NSAttributedString {
+    public func appending(_ attribute: Any, for key: NSAttributedString.Key) -> NSAttributedString {
         let result = mutable
-        result.append(
-            attribute,
-            for: key
-        )
+        result.append(attribute, for: key)
 
         return result
     }
 
-    public func appending(
-        _ string: String,
-        attributes: [Key: Any] = [:]
-    ) -> NSAttributedString {
+    public func appending(_ string: String, attributes: [Key: Any] = [:]) -> NSAttributedString {
         let result = mutable
-        result.append(
-            NSAttributedString(
-                string: string,
-                attributes: attributes
-            )
-        )
+        let attributedString = NSAttributedString(string: string, attributes: attributes)
+        result.append(attributedString)
 
         return result
     }

@@ -5,7 +5,7 @@ extension String {
         NSAttributedString(string: self)
     }
 
-    public var utf8Data: Data {
+    public var data: Data {
         safeUndefinedIfNil(
             data(using: .utf8),
             Data(),
@@ -15,18 +15,15 @@ extension String {
 
     public var camelCaseChunks: [String] {
         unicodeScalars.reduce("") {
-            let separator = CharacterSet.uppercaseLetters.union(.decimalDigits).contains($1) ? " " : ""
+            let letters = CharacterSet.uppercaseLetters
+            let digits = CharacterSet.decimalDigits
+            let set = letters.union(digits)
+            let separator = set.contains($1) ? " " : ""
 
             return $0 + separator + String($1)
         }
         .split(separator: " ")
         .map(String.init)
-    }
-
-    public func jsonObject<T: Decodable>(decoder: JSONDecoder = JSONDecoder()) -> T? {
-        guard let data = data(using: .utf8) else { return nil }
-
-        return try? decoder.decode(T.self, from: data)
     }
 
     public mutating func replace(_ replacements: [String: String]) {
@@ -40,10 +37,18 @@ extension String {
         }
     }
 
+    public mutating func replace(_ candidate: String, with replacement: String) {
+        self.replace([candidate: replacement])
+    }
+
     public func replacing(_ replacements: [String: String]) -> String {
         var result = self
         result.replace(replacements)
 
         return result
+    }
+
+    public mutating func replacing(_ candidate: String, with replacement: String) -> String {
+        replacing([candidate: replacement])
     }
 }

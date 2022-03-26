@@ -2,15 +2,11 @@ import Foundation
 
 extension FileManager {
     public var documents: URL {
-        let urls = urls(
-            for: .documentDirectory,
-            in: .userDomainMask
-        )
-        let candidate = urls[safe: 0]
-
-        return safeUndefinedIfNil(
-            candidate,
-            URL(fileURLWithPath: ""),
+        undefinedIfNil(
+            urls(
+                for: .documentDirectory,
+                in: .userDomainMask
+            )[safe: 0],
             "Failed to get documents directory"
         )
     }
@@ -52,15 +48,16 @@ extension FileManager {
     }
 
     public func isDirectoryEmpty(at url: URL) -> Bool {
-        (try? items(at: url))?.isEmpty == true
+        guard let items = try? items(at: url) else { return false }
+
+        return items.isEmpty
     }
 
     @discardableResult
     public func createFile(at url: URL, contents: Data?) -> Bool {
-        createFile(
-            atPath: url.path,
-            contents: contents
-        )
+        guard let contents = contents else { return false }
+
+        return createFile(atPath: url.path, contents: contents)
     }
 
     public func createDirectory(at url: URL) throws {

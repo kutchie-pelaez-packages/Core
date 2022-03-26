@@ -1,7 +1,6 @@
 extension UnkeyedDecodingContainer {
     public mutating func decode(_ type: Array<Any>.Type) throws -> [Any] {
         var result = [Any]()
-
         while !isAtEnd {
             if try decodeNil() {
                 continue

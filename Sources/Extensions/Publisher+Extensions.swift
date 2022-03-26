@@ -2,25 +2,19 @@ import Combine
 import Foundation
 
 extension Publisher {
-    public func dispatch(on queue: DispatchQueue) -> Publishers.ReceiveOn<Self, DispatchQueue> {
-        receive(on: queue)
-    }
-
     public func debounce(
         for interval: TimeInterval,
-        on queue: DispatchQueue = .main
+        queue: DispatchQueue = .main,
+        options: DispatchQueue.SchedulerOptions? = nil
     ) -> Publishers.Debounce<Self, DispatchQueue> {
         debounce(
             for: DispatchQueue.SchedulerTimeType.Stride(floatLiteral: interval),
-            scheduler: queue
+            scheduler: queue,
+            options: options
         )
     }
 
-    public func asVoid() -> Publishers.Map<Self, Void> {
-        map { _ in () }
-    }
-
-    public func eraseToVoidPublisher() -> AnyPublisher<Void, Failure> {
-        asVoid().eraseToAnyPublisher()
+    public func voided() -> AnyPublisher<Void, Failure> {
+        map { _ in () }.eraseToAnyPublisher()
     }
 }

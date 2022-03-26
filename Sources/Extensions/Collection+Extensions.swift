@@ -5,7 +5,5 @@ extension Collection {
         return indices.contains(index) ? self[index] : nil
     }
 
-    public var isNotEmpty: Bool {
-        !isEmpty
-    }
+    public var isNotEmpty: Bool { !isEmpty }
 }

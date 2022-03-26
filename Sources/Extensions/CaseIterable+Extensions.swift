@@ -1,6 +1,6 @@
 extension CaseIterable {
-    public init?(caseIndex index: AllCases.Index) {
-        if let value = Self.allCases[safe: index] {
+    public init?(caseIndex: AllCases.Index) {
+        if let value = Self.allCases[safe: caseIndex] {
             self = value
         } else {
             return nil
@@ -10,13 +10,16 @@ extension CaseIterable {
     public static var random: Self {
         undefinedIfNil(
             allCases.randomElement(),
-            "There must be at least 1 element"
+            "\(Self.self) must has at least 1 case"
         )
     }
 }
 
 extension CaseIterable where Self: Equatable {
-    public var caseIndex: AllCases.Index? {
-        Self.allCases.firstIndex(where: { $0 == self })
+    public var caseIndex: AllCases.Index {
+        undefinedIfNil(
+            Self.allCases.firstIndex(where: { $0 == self }),
+            "\(Self.self) must has at least 1 case"
+        )
     }
 }

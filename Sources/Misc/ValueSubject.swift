@@ -1,15 +1,11 @@
 import Combine
 
 public class ValueSubject<Value>: Publisher {
-    internal init(_ currentValueSubject: CurrentValueSubject<Output, Failure>) {
-        self.currentValueSubject = currentValueSubject
-    }
-
-    internal init(_ value: Output) {
+    fileprivate init(_ value: Output) {
         self.currentValueSubject = CurrentValueSubject<Output, Failure>(value)
     }
 
-    internal let currentValueSubject: CurrentValueSubject<Output, Failure>
+    fileprivate let currentValueSubject: CurrentValueSubject<Output, Failure>
 
     public var value: Output {
         currentValueSubject.value
@@ -21,7 +17,18 @@ public class ValueSubject<Value>: Publisher {
 
     public typealias Failure = Never
 
-    public func receive<S>(subscriber: S) where S : Subscriber, S.Failure == Failure, S.Input == Output {
+    public func receive<S>(subscriber: S) where S: Subscriber, S.Failure == Failure, S.Input == Output {
         currentValueSubject.receive(subscriber: subscriber)
+    }
+}
+
+public final class MutableValueSubject<Value>: ValueSubject<Value> {
+    public override init(_ value: Output) {
+        super.init(value)
+    }
+
+    public override var value: Output {
+        get { super.value }
+        set { super.currentValueSubject.value = newValue }
     }
 }

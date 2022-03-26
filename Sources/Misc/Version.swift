@@ -42,7 +42,6 @@ public struct Version: CustomStringConvertible, Comparable, Codable {
     public let minor: Int
     public let patch: Int
 
-
     // MARK: - CustomStringConvertible
 
     public var description: String {

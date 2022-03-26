@@ -12,7 +12,7 @@ extension NestingIdentifiable where Self: RawRepresentable, RawValue == String {
     public var nestingIdentifier: String {
         let parts = [
             String(reflecting: type(of: self)),
-            rawValue,
+            rawValue
         ]
 
         return parts.joined(separator: ".")
