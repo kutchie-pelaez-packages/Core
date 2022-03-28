@@ -1,3 +1,5 @@
+import Combine
+
 public typealias Block = () -> Void
 public typealias IntBlock = (Int) -> Void
 public typealias StringBlock = (String) -> Void
@@ -12,3 +14,9 @@ public typealias BoolResolver = () -> Bool
 
 public typealias Map<Input, Output> = (Input) -> Output
 public typealias Filter<T> = (T) -> Bool
+
+public typealias ValuePublisher<Value> = AnyPublisher<Value, Never>
+public typealias VoidPublisher = AnyPublisher<Void, Never>
+
+public typealias ValuePassthroughSubject<Value> = PassthroughSubject<Value, Never>
+public typealias VoidPassthroughSubject = PassthroughSubject<Void, Never>
