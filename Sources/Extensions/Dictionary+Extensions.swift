@@ -1,7 +1,6 @@
 import Foundation
 
 extension Dictionary {
-    @inlinable
     public static func +(lhs: [Key: Value], rhs: [Key: Value]) -> [Key: Value] {
         var result = lhs
         rhs.forEach {
@@ -11,7 +10,6 @@ extension Dictionary {
         return result
     }
 
-    @inlinable
     public static func +=(lhs: inout [Key: Value], rhs: [Key: Value] ) {
         rhs.forEach { lhs[$0] = $1 }
     }
