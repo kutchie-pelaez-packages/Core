@@ -5,7 +5,7 @@ extension Optional {
 }
 
 extension Optional where Wrapped == String {
-    public var orEmpty: Wrapped { self ?? "" }
+    public var orEmpty: String { self ?? "" }
 }
 
 extension Optional where Wrapped == Substring {

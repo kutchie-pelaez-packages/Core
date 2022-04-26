@@ -1,17 +1,17 @@
 import Foundation
 
 public final class BlockRetainer {
+    private let action: Action
+
     public init(
         attachTo object: NSObject,
-        block: @escaping Block
+        action: @escaping Action
     ) {
-        self.block = block
+        self.action = action
         object.associateAnonymousReference(to: self)
     }
 
-    private let block: Block
-
     @objc public func invoke() {
-        block()
+        action()
     }
 }

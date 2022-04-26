@@ -4,9 +4,9 @@ import Foundation
 public func dispatch(
     to queue: DispatchQueue,
     after delay: TimeInterval,
-    block: @escaping Block
+    action: @escaping Action
 ) -> IdentifiableDispatchWorkItem {
-    let identifiableDispatchWorkItem = IdentifiableDispatchWorkItem(block: block)
+    let identifiableDispatchWorkItem = IdentifiableDispatchWorkItem(action: action)
     let dispatchTimeInterval = DispatchTimeInterval.nanoseconds(
         Int(TimeInterval(NSEC_PER_SEC) * delay)
     )
@@ -22,19 +22,19 @@ public func dispatch(
 @discardableResult
 public func dispatch(
     after delay: TimeInterval,
-    block: @escaping Block
+    action: @escaping Action
 ) -> IdentifiableDispatchWorkItem {
     dispatch(
         to: .main,
         after: delay,
-        block: block
+        action: action
     )
 }
 
 @discardableResult
-public func dispatch(block: @escaping Block) -> IdentifiableDispatchWorkItem {
+public func dispatch(action: @escaping Action) -> IdentifiableDispatchWorkItem {
     dispatch(
         after: .zero,
-        block: block
+        action: action
     )
 }

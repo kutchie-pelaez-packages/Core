@@ -1,5 +1,16 @@
 @propertyWrapper
 public struct Clamped<T: Comparable> {
+    public var wrappedValue: T {
+        get { clampedValue }
+        set { value = newValue }
+    }
+
+    private var value: T
+    private var clampedValue: T { value.clamped(from: lowerBound, to: upperBound) }
+
+    private let lowerBound: T?
+    private let upperBound: T?
+
     public init(
         wrappedValue: T,
         _ range: ClosedRange<T>
@@ -25,16 +36,5 @@ public struct Clamped<T: Comparable> {
         self.value = wrappedValue
         self.lowerBound = nil
         self.upperBound = range.upperBound
-    }
-
-    private var value: T
-    private var clampedValue: T { value.clamped(from: lowerBound, to: upperBound) }
-
-    private let lowerBound: T?
-    private let upperBound: T?
-
-    public var wrappedValue: T {
-        get { clampedValue }
-        set { value = newValue }
     }
 }

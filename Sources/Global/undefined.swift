@@ -4,8 +4,7 @@ public func undefined<T>(
     _ function: String = #function,
     _ line: Int = #line
 ) -> T {
-    let filename = file.split(separator: "/").last.orEmpty
-    fatalError("Undefined value found in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
+    fatalError()
 }
 
 public func undefinedIf<T>(
@@ -16,16 +15,11 @@ public func undefinedIf<T>(
     _ function: String = #function,
     _ line: Int = #line
 ) -> T {
-    if condition {
-        return undefined(
-            message,
-            file,
-            function,
-            line
-        )
-    } else {
+    guard condition else {
         return value
     }
+
+    return undefined(message, file, function, line)
 }
 
 public func undefinedIfNil<T>(
@@ -35,16 +29,11 @@ public func undefinedIfNil<T>(
     _ function: String = #function,
     _ line: Int = #line
 ) -> T {
-    if let value = value {
-        return value
-    } else {
-        return undefined(
-            message,
-            file,
-            function,
-            line
-        )
+    guard let value = value else {
+        return undefined(message, file, function, line)
     }
+
+    return value
 }
 
 public func safeUndefined<T>(
@@ -54,8 +43,7 @@ public func safeUndefined<T>(
     _ function: String = #function,
     _ line: Int = #line
 ) -> T {
-    let filename = file.split(separator: "/").last.orEmpty
-    assertionFailure("Undefined value found in \(filename): \(function) on line \(line)\(message.isEmpty ? "" : ". Message: \(message)")")
+    assertionFailure()
 
     return fallback
 }
@@ -68,17 +56,17 @@ public func safeUndefinedIf<T>(
     _ function: String = #function,
     _ line: Int = #line
 ) -> T {
-    if condition {
-        return safeUndefined(
-            fallback,
-            message,
-            file,
-            function,
-            line
-        )
-    } else {
+    guard condition else {
         return fallback
     }
+
+    return safeUndefined(
+        fallback,
+        message,
+        file,
+        function,
+        line
+    )
 }
 
 public func safeUndefinedIfNil<T>(
@@ -89,9 +77,7 @@ public func safeUndefinedIfNil<T>(
     _ function: String = #function,
     _ line: Int = #line
 ) -> T {
-    if let candidate = candidate {
-        return candidate
-    } else {
+    guard let candidate = candidate else {
         return safeUndefined(
             fallback,
             message,
@@ -100,4 +86,6 @@ public func safeUndefinedIfNil<T>(
             line
         )
     }
+
+    return candidate
 }

@@ -1,17 +1,18 @@
 public struct WeakArray<T>: Collection, ExpressibleByArrayLiteral {
-    public init() {
-        self.buffer = []
-    }
-
     private var buffer: [Resolver<T?>]
 
     private var values: [T] {
         buffer.compactMap { $0() }
     }
 
+    public init() {
+        self.buffer = []
+    }
+
     public mutating func append(_ value: T) {
         let object = value as AnyObject
-        buffer.append { [weak object] in object as? T }
+        let resolver = { [weak object] in object as? T }
+        buffer.append(resolver)
     }
 
     // MARK: - Collection

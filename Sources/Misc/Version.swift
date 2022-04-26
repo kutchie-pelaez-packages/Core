@@ -1,8 +1,20 @@
+public enum VersionDecodingError: Error {
+    case invalidVersionFormat
+}
+
 public struct Version: CustomStringConvertible, Comparable, Codable {
+    private static var zero: Version {
+        Version(0, 0, 0)
+    }
+
+    public let major: Int
+    public let minor: Int
+    public let patch: Int
+
     public init(
-        major: Int,
-        minor: Int,
-        patch: Int
+        _ major: Int,
+        _ minor: Int,
+        _ patch: Int
     ) {
         self.major = major
         self.minor = minor
@@ -29,18 +41,6 @@ public struct Version: CustomStringConvertible, Comparable, Codable {
             "Failed to get current version from Info.plist: \(ApplicationInfo.version)"
         )
     }
-
-    private static var zero: Version {
-        Version(
-            major: 0,
-            minor: 0,
-            patch: 0
-        )
-    }
-
-    public let major: Int
-    public let minor: Int
-    public let patch: Int
 
     // MARK: - CustomStringConvertible
 
@@ -89,8 +89,4 @@ public struct Version: CustomStringConvertible, Comparable, Codable {
 
         try container.encode(verionString)
     }
-}
-
-public enum VersionDecodingError: Error {
-    case invalidVersionFormat
 }

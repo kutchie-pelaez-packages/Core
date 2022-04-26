@@ -10,17 +10,6 @@ private func isNil<T>(_ value: T) -> Bool {
 
 @propertyWrapper
 public struct UserDefault<T> {
-    public init(
-        _ key: String,
-        default: T
-    ) {
-        self.key = key
-        self.default = `default`
-    }
-
-    private let key: String
-    private let `default`: T
-
     public var wrappedValue: T {
         get { (UserDefaults.standard.value(forKey: key) as? T) ?? `default` }
         set {
@@ -30,5 +19,16 @@ public struct UserDefault<T> {
                 UserDefaults.standard.set(newValue, forKey: key)
             }
         }
+    }
+
+    private let key: String
+    private let `default`: T
+
+    public init(
+        _ key: String,
+        default: T
+    ) {
+        self.key = key
+        self.default = `default`
     }
 }

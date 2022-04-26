@@ -1,16 +1,16 @@
 import Foundation
 
 public final class IdentifiableDispatchWorkItem: Equatable {
-    public init(
-        id: String = UUID().uuidString,
-        block: @escaping Block
-    ) {
-        self.id = id
-        self.dispatchWorkItem = DispatchWorkItem(block: block)
-    }
-
     public let id: String
     public let dispatchWorkItem: DispatchWorkItem
+
+    public init(
+        id: String = UUID().uuidString,
+        action: @escaping Action
+    ) {
+        self.id = id
+        self.dispatchWorkItem = DispatchWorkItem(block: action)
+    }
 
     public func cancel() {
         dispatchWorkItem.cancel()

@@ -17,19 +17,19 @@ public enum ApplicationInfo {
         )
     }
 
-    static var version: String {
-        safeUndefinedIfNil(
-            mainBundleInfoPlist["CFBundleShortVersionString"] as? String,
-            "",
-            "Failed to get application version"
-        )
-    }
-
     public static var build: String {
         safeUndefinedIfNil(
             mainBundleInfoPlist["CFBundleVersion"] as? String,
             "",
             "Failed to get application build"
+        )
+    }
+
+    static var version: String {
+        safeUndefinedIfNil(
+            mainBundleInfoPlist["CFBundleShortVersionString"] as? String,
+            "",
+            "Failed to get application version"
         )
     }
 
