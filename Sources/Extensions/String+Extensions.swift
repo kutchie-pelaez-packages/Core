@@ -48,7 +48,7 @@ extension String {
         return result
     }
 
-    public mutating func replacing(_ candidate: String, with replacement: String) -> String {
+    public func replacing(_ candidate: String, with replacement: String) -> String {
         replacing([candidate: replacement])
     }
 }
