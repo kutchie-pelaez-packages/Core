@@ -3,7 +3,7 @@ public enum VersionDecodingError: Error {
 }
 
 public struct Version: CustomStringConvertible, Comparable, Codable {
-    private static var zero: Version {
+    public static var zero: Version {
         Version(0, 0, 0)
     }
 
@@ -32,14 +32,6 @@ public struct Version: CustomStringConvertible, Comparable, Codable {
         major = parts[safe: 0] ?? 0
         minor = parts[safe: 1] ?? 0
         patch = parts[safe: 2] ?? 0
-    }
-
-    public static var current: Version {
-        safeUndefinedIfNil(
-            Version(ApplicationInfo.version),
-            zero,
-            "Failed to get current version from Info.plist: \(ApplicationInfo.version)"
-        )
     }
 
     // MARK: - CustomStringConvertible
