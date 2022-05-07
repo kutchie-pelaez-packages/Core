@@ -3,11 +3,11 @@ extension Sequence {
         compactMap { $0 }
     }
 
-    public func unique<T: Hashable>(by hashingTransform: (Element) -> T) -> [Element] {
+    public func unique<T: Hashable>(_ hashingResolver: (Element) -> T) -> [Element] {
         var seenElements = Set<T>()
 
         return filter { element in
-            let hashElement = hashingTransform(element)
+            let hashElement = hashingResolver(element)
 
             if !seenElements.contains(hashElement) {
                 seenElements.insert(hashElement)
