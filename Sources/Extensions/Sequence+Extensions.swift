@@ -3,8 +3,24 @@ extension Sequence {
         compactMap { $0 }
     }
 
+    public func unique<T: Hashable>(by hashingTransform: (Element) -> T) -> [Element] {
+        var seenElements = Set<T>()
+
+        return filter { element in
+            let hashElement = hashingTransform(element)
+
+            if !seenElements.contains(hashElement) {
+                seenElements.insert(hashElement)
+                return true
+            }
+
+            return false
+        }
+    }
+
     public func asyncMap<T>(_ transform: (Element) async throws -> T) async rethrows -> [T] {
         var result = [T]()
+
         for element in self {
             let transformedElement = try await transform(element)
             result.append(transformedElement)
@@ -28,5 +44,11 @@ extension Sequence {
 extension Sequence where Element: Sequence {
     public func flatten() -> [Element.Element] {
         flatMap { $0 }
+    }
+}
+
+extension Sequence where Element: Hashable {
+    public func uniqued() -> [Element] {
+        unique { $0 }
     }
 }
